@@ -1,0 +1,135 @@
+<html>
+<head>
+<title>SansWeather</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@500&display=swap');
+body{
+	background-image: linear-gradient(to bottom right,#0e0725, #5c03bc, #e536ab, #f4e5f0);
+	font-family: 'Heebo', sans-serif;
+}
+.card{
+	width: 600px;
+	border: 500px;
+    height: 350px;
+	border-radius: 20px;
+    border-top:100px;
+    backdrop-filter: blur(8.9px);
+    -webkit-backdrop-filter: blur(8.9px);
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 10px 10px 12px -6px black;
+}
+.form-control{
+	border-radius: 7px;
+	border: 1.5px solid #E3E6ED;
+}
+input.form-control:focus{
+	box-shadow: none;
+	border: 1.5px solid #E3E6ED;
+	background-color: #F7F8FD;
+	letter-spacing: 1px;
+}
+.btn-primary{
+	background-color: #5878FF!important;
+	border-radius: 7px;
+}
+.btn-primary:focus{
+	box-shadow: none;
+}
+h1{
+    font-family: Phosphate;
+    color:white;
+}
+h4{
+    color:white;
+}
+	.temp{
+        text-align: right;
+        margin-top: -120px;
+        font-family: "arial";
+        font-size: 60px;
+        font-weight: lighter;
+        color:white;
+    }
+    .feel{
+        text-align:right;
+        font-size:20px;
+        font-style: inherit;
+        color:white;
+        font-weight: lighter;
+    }
+    .press,.visi{
+        text-align:right;
+        font-size:20px;
+        color:white;
+    }
+    .visi{
+        margin-top:-40px;
+    }
+    .humi,.speed{
+        text-align:left;
+        font-size:20px;
+        color:white;
+    }
+    .humi{
+        margin-top:-22px;
+    }
+    .nav-link,.navbar-brand{
+        color:white;
+    }
+</style>
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg ">
+  <a class="navbar-brand" href="#">SansWeather</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://openweathermap.org/api">API</a>
+      </li>
+    </ul></div>
+</nav>
+
+
+
+
+
+<div class="container d-flex justify-content-center">
+	<span class="card mt-5 p-4">
+<form action="" method="post">
+		<div class="input-group mb-3">
+            {% csrf_token %}
+			<input type="text" class="form-control" name="city" placeholder="Search City">
+			<div class="input-group-append"><button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button></div>
+		</div>
+</form>
+        {% if city is not None %}
+            <div id = 'imageContainer'><img src = 'http://openweathermap.org/img/w/{{data.weather_icon}}.png'></div>
+            <h1>{{city | capfirst}}</h1>
+            <h4>{{data.weather_description | capfirst}}</h4>
+            <span class="temp"> {{data.weather_temperature}}°</span>
+            <span class="feel">Feels Like {{data.feel_temperature}}°</span>
+            <span class="press">Pressure: {{data.weather_pressure}}</span>
+            <span class="humi">Humidity: {{data.weather_humidity}}%</span>
+            <span class="speed">Wind Speed: {{data.wind_speed}} knots</span>
+            <span class="visi">Visibility: {{data.visibility}}m</span>
+        {% endif %}
+    </span>
+</div>
+
+
+</body>
+</html>
