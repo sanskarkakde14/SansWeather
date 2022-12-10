@@ -1,6 +1,6 @@
 # 🌦 SansWeather
 ---
-### Link: https://sansweather.herokuapp.com
+### Link: https://sansweather.herokuapp.com. (may not work as Heroku free postgres dyno policy change)
 Python-DJango based weather app+openWeatherAPI
 
 ## 📒 Description
